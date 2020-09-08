@@ -1,0 +1,23 @@
+Project plan:
+
+1. greet user:
+    Hello! And welcome to the Bevvie Bevy: an interactive experience for coffee connoisseurs and novices alike.
+
+2. give option to see full list of espresso drinks by name, or by whether they contain milk (true/false)
+    What's in a name? A bean by any other name would taste as sweet.
+
+    Type "list" to see a complete list of all the espresso beverages.
+
+    Alternatively, for the lactose challenged amongst us, type "milk" or "no milk" to see drinks categorized by whether they contain milk.
+
+3. shows numbered list (either from "list" or "milk")
+
+4. prompts user to enter a number to learn more
+
+5. provides more info
+
+6. prompts user to see one of the lists again or to exit
+
+(7. would you like a pastry with that?)
+
+
