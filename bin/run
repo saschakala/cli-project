@@ -1,3 +1,0 @@
-#!/usr/vin/env ruby
-
-require 'pry'
