@@ -1,6 +1,8 @@
 class Drink
 
     @@all = []
+    @@milk = []
+    @@no_milk = []
 
     attr_accessor :name, :milk
 
@@ -8,6 +10,13 @@ class Drink
         @name = name
         @milk = milk
         @@all << self
+        @@milk << self if milk == true
+        @@no_milk << self if milk == false
+        # if @milk == true
+        #     @@milk << self
+        # else @milk == false 
+        #     @@no_milk << self
+        # end
     end
 
 
@@ -17,20 +26,48 @@ class Drink
     end
 
 
-    def self.drinks_sorted
-        self.all.sort_by {|drink| drink.name}
+    def self.milk_drinks
+        @@milk
     end
 
 
-    def self.list_sorted_drinks
-        self.drinks_sorted.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+    def self.no_milk_drinks
+        @@no_milk
     end
 
-    espresso = Drink.new("Espresso")
-    latte = Drink.new("Latte")
-    flat_white = Drink.new("Flat White")
+
+    def self.sorted_drinks_list
+        sorted_drinks = self.all.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+    end
+
+    def self.milk_drink_list
+        sorted_drinks = self.milk_drinks.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+    end
+
+    def self.no_milk_drink_list
+        sorted_drinks = self.no_milk_drinks.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+    end
+
+    
+
+
+    
+
+
+
+    espresso = Drink.new("Espresso", false)
+    latte = Drink.new("Latte", true)
+    flat_white = Drink.new("Flat White", true)
 
 
 
 end
+
+
+ # def self.drinks_sorted
+    #     self.all.sort_by {|drink| drink.name}
+    # end
 

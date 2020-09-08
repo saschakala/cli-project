@@ -3,6 +3,8 @@ class CoffeeDrinks
     def call
         greeting
         list_drinks
+        milk_drinks
+        no_milk_drinks
     end
 
     def greeting
@@ -10,15 +12,15 @@ class CoffeeDrinks
     end
 
     def list_drinks
-        Drink.list_sorted_drinks
+        Drink.sorted_drinks_list
     end
 
     def milk_drinks
-        puts "1. Latte"
-        puts "2. Cappucino"
+        Drink.milk_drink_list
     end
 
-    def milk_free_drinks
+    def no_milk_drinks
+        Drink.no_milk_drink_list
     end
 
 
