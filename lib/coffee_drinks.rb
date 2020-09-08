@@ -1,17 +1,16 @@
 class CoffeeDrinks
 
     def call
-        Scraper.scrape_drinks
         greeting
         list_drinks
     end
 
     def greeting
-        puts "Hello!\nWelcome to the Bevvie Bevy:\nan interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what, exactly, the difference is between a flat white and long black? The Bevy is here to help.\n\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you the poops **\n\n --> enter 'list', 'milk', or 'no milk' to proceed and 'exit' to leave <--"
+        puts "Hello!\nWelcome to the Bevvie Bevy:\nan interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what, exactly, the difference is between a flat white and long black? If so, the Bevy is here to help.\n\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you the poops **\n\n --> enter 'list', 'milk', or 'no milk' to proceed and 'exit' to leave <--"
     end
 
     def list_drinks
-        Drink.all.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        Drink.list_sorted_drinks
     end
 
     def milk_drinks
