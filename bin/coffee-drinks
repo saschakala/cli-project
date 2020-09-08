@@ -1,0 +1,6 @@
+#!/usr/vin/env ruby
+
+require_relative '../config/environment'
+
+CoffeeDrinks::CLI.new.call
+
