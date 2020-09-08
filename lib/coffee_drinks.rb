@@ -1,6 +1,7 @@
 class CoffeeDrinks
 
     def call
+        Scraper.scrape_drinks
         greeting
         list_drinks
     end
