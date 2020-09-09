@@ -12,9 +12,14 @@ class Scraper
                 "no"
             end
             description = drink.css("p").text
-            ratio = drink.css("li.icon-check").text
-            binding.pry
-            Drink.new(name, milk, description, ratio)
+            # create an empty array for ratio
+            # iterate over the values for ratio and cup, shoveling them into array separately
+            # set ratio_cup_values[0] to ratio, and ratio_cup_values[1] to cup
+            ratio_cup_values = []
+            drink.css("li.icon-check").each {|value| ratio_cup_values << value.text }
+            ratio = ratio_cup_values[0]
+            cup = ratio_cup_values[1]
+            Drink.new(name, milk, description, ratio, cup)
         end
     end
 
