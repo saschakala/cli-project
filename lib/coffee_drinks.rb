@@ -1,8 +1,8 @@
 class CoffeeDrinks
 
     def call
-        Scraper.scrape_drinks
         greeting
+        Scraper.scrape_drinks
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_1
         # list_drinks

@@ -11,8 +11,8 @@ class Drink
         @name = name
         @milk = milk
         @@all << self
-        @@milk << self if milk == true #change to yes/no
-        @@no_milk << self if milk == false
+        @@milk << self if milk == "yes" #change to yes/no
+        @@no_milk << self if milk == "no"
         # if @milk == true
         #     @@milk << self
         # else @milk == false 
@@ -38,18 +38,18 @@ class Drink
 
 
 
-    espresso = Drink.new("Espresso", false)
-    latte = Drink.new("Latte", true)
-    flat_white = Drink.new("Flat White", true)
-    espresso.description = "words etc"
-    latte.description = "more words"
-    flat_white.description = "yummy"
-    espresso.ratio = "words etc"
-    latte.ratio = "more words"
-    flat_white.ratio = "blah"
-    espresso.cup = "words etc"
-    latte.cup = "more words"
-    flat_white.cup = "blah"
+    # espresso = Drink.new("Espresso", false)
+    # latte = Drink.new("Latte", true)
+    # flat_white = Drink.new("Flat White", true)
+    # espresso.description = "words etc"
+    # latte.description = "more words"
+    # flat_white.description = "yummy"
+    # espresso.ratio = "words etc"
+    # latte.ratio = "more words"
+    # flat_white.ratio = "blah"
+    # espresso.cup = "words etc"
+    # latte.cup = "more words"
+    # flat_white.cup = "blah"
 
 
 
