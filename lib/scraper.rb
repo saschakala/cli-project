@@ -6,7 +6,8 @@ class Scraper
         doc = Nokogiri::HTML(open(DRINK_URL))
         doc.css("div.blog-highlight-wrap").each do |drink|
             name = drink.css("h3").text
-            milk = if drink.css("li.icon-check").text.include?("milk") == true
+            ratio_cup = drink.css("li.icon-check")
+            milk = if ratio_cup.text.include?("milk") || ratio_cup.text.include?("foam") == true
                 "yes"
             else
                 "no"
@@ -16,7 +17,7 @@ class Scraper
             # iterate over the values for ratio and cup, shoveling them into array separately
             # set ratio_cup_values[0] to ratio, and ratio_cup_values[1] to cup
             ratio_cup_values = []
-            drink.css("li.icon-check").each {|value| ratio_cup_values << value.text }
+            ratio_cup.each {|value| ratio_cup_values << value.text }
             ratio = ratio_cup_values[0]
             cup = ratio_cup_values[1]
             Drink.new(name, milk, description, ratio, cup)

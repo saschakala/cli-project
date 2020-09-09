@@ -3,6 +3,7 @@ class CoffeeDrinks
     def call
         greeting
         Scraper.scrape_drinks
+        # puts Drink.sort_all[0]
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_main
         # list_drinks
@@ -47,8 +48,9 @@ class CoffeeDrinks
             #put the list_drinks and menu again but only after 5 seconds - look this up
         else
             # using the input as the index to access that drink's attributes
-            drink = Drink.all[input.to_i-1]
+            drink = Drink.sort_all[input.to_i-1]
             drink_details(drink)
+
         end
         #do you want to see another drink?
     end
@@ -81,9 +83,9 @@ class CoffeeDrinks
 
     def drink_details (drink)
         # Scraper.scrape_drink_details(drink)
-        puts "Order up! One #{drink.name}:"
-        puts "#{drink.description}"
-        puts "#{drink.ratio}"
+        puts "\nOrder up! One #{drink.name}:"
+        puts "\n#{drink.description}"
+        puts "\n#{drink.ratio}"
         puts "#{drink.cup}"
         puts "Milk: #{drink.milk}"
     end

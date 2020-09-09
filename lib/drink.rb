@@ -3,6 +3,7 @@ class Drink
     @@all = []
     @@milk = []
     @@no_milk = []
+    @@all_sorted = []
 
     attr_accessor :name, :milk, :description, :ratio, :cup
 
@@ -22,6 +23,12 @@ class Drink
     def self.all
         @@all
     end
+
+    def self.sort_all
+        self.all.sort_by {|drink| drink.name}.each {|instance| @@all_sorted << instance }
+        @@all_sorted
+    end
+
 
 
     def self.milk_drinks
