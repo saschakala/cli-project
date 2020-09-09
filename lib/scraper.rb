@@ -6,6 +6,10 @@ class Scraper
         doc = Nokogiri::HTML(open(DRINK_URL))
     end
 
+    def self.scrape_drink_details
+    end
+    
+
 
 end
 

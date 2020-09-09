@@ -5,6 +5,7 @@ class CoffeeDrinks
         list_drinks
         milk_drinks
         no_milk_drinks
+        menu
     end
 
     def greeting
@@ -16,7 +17,7 @@ class CoffeeDrinks
     end
 
     def milk_drinks
-        Drink.milk_drink_list
+        Drink.milk_drink_list 
     end
 
     def no_milk_drinks
@@ -25,6 +26,7 @@ class CoffeeDrinks
 
 
     def menu
+        puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a beverage, enter its corresponding list number below or type 'exit' to leave."
 
     end
 
