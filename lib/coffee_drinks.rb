@@ -2,6 +2,7 @@ class CoffeeDrinks
 
     def call
         greeting
+        puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you the poops **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_1
         # list_drinks
         # milk_drinks
@@ -13,10 +14,10 @@ class CoffeeDrinks
     end
 
     def menu_1
-        puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you the poops **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
-        input = gets.chomp
+        input = gets.chomp.downcase
         if input == "list"
             list_drinks
+            puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
             menu_details
         elsif input == "milk"
             milk_drinks
@@ -28,34 +29,49 @@ class CoffeeDrinks
             puts "A cuppa a day keeps the doctor away."
         else 
             puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+            puts "\n--> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
+            menu_1
         end
     end
 
-    def list_drinks
-        Drink.sorted_drinks_list
-    end
-
-    def milk_drinks
-        Drink.milk_drink_list 
-    end
-
-    def no_milk_drinks
-        Drink.no_milk_drink_list
-    end
-
     def menu_details
-        puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
-
+        input = gets.chomp.downcase
+        if input == "exit"
+            puts "I know, I know: our latte art needs work."
+        elsif !input.to_i.between?(1, Drink.all.count)
+            list_drinks
+            puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+            puts "\nSelect a number to get drink details or type 'exit' to leave."
+            menu_details 
+            #put the list_drinks and menu again but only after 5 seconds - look this up
+        else
+            #Drink.all[input.to_i-1]
+            puts "drink details"
+        end
     end
 
     def menu_milk
         puts "\nLiving a life of lactose luxury, I see.\nSelect a number to learn more about your favorite drink's fuel to foam ratio."
+        input = gets.chomp.downcase
     end
 
     def menu_no_milk
         puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone.\nSelect a number to learn more about your favorite drink."
+        input = gets.chomp.downcase
     end
 
+
+    def list_drinks
+        Drink.sorted_drinks_list
+    end
+    
+    def milk_drinks
+        Drink.milk_drink_list 
+    end
+    
+    def no_milk_drinks
+        Drink.no_milk_drink_list
+    end
 
 
 
