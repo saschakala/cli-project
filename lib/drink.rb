@@ -6,24 +6,21 @@ class Drink
 
     attr_accessor :name, :milk, :description, :ratio, :cup
 
-    def initialize (name, milk = "")
+    def initialize (name, milk = "", description, ratio)
         # add url to initialize
         @name = name
         @milk = milk
+        @description = description
+        @ratio = ratio
+        # @cup = cup
         @@all << self
         @@milk << self if milk == "yes"
         @@no_milk << self if milk == "no"
-        # if @milk == true
-        #     @@milk << self
-        # else @milk == false 
-        #     @@no_milk << self
-        # end
     end
 
 
     def self.all
-        @@all 
-        # = ["Espresso", "Flat White", "Latte", "Americano"]
+        @@all
     end
 
 

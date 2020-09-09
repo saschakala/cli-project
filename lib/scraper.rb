@@ -11,12 +11,19 @@ class Scraper
             else
                 "no"
             end
-            Drink.new(name, milk)
+            description = drink.css("p").text
+            ratio = drink.css("li.icon-check").text
+            binding.pry
+            Drink.new(name, milk, description, ratio)
         end
     end
 
-    def self.scrape_drink_details
-    end
+    # def self.scrape_drink_details (drink)
+    #     doc = Nokogiri::HTML(open(DRINK_URL))
+    #     doc.css("div.blog-highlight-wrap").each do |drink|
+            
+
+    # end
     
 
 
