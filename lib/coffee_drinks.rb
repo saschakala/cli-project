@@ -2,7 +2,7 @@ class CoffeeDrinks
 
     def call
         greeting
-        puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you the poops **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
+        puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_1
         # list_drinks
         # milk_drinks
@@ -45,8 +45,9 @@ class CoffeeDrinks
             menu_details 
             #put the list_drinks and menu again but only after 5 seconds - look this up
         else
-            #Drink.all[input.to_i-1]
-            puts "drink details"
+            # using the input as the index to access the value of that hash (the details of the drink)
+            drink = Drink.all[input.to_i-1]
+            drink_details(drink)
         end
     end
 
@@ -62,16 +63,29 @@ class CoffeeDrinks
 
 
     def list_drinks
-        Drink.sorted_drinks_list
+        sorted_drinks = Drink.all.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def milk_drinks
-        Drink.milk_drink_list 
+        sorted_drinks = Drink.milk_drinks.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def no_milk_drinks
-        Drink.no_milk_drink_list
+        sorted_drinks = Drink.no_milk_drinks.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
+
+    def drink_details (drink)
+        # Scraper.scrape_drink_details(drink)
+        puts "Order up! One #{drink.name}:"
+        puts "#{drink.description}"
+        puts "#{drink.ratio}"
+        puts "#{drink.cup}"
+        puts "#{drink.milk}"
+    end
+
 
 
 
