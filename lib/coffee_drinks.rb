@@ -1,6 +1,7 @@
 class CoffeeDrinks
 
     def call
+        Scraper.scrape_drinks
         greeting
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_1
@@ -45,10 +46,11 @@ class CoffeeDrinks
             menu_details 
             #put the list_drinks and menu again but only after 5 seconds - look this up
         else
-            # using the input as the index to access the value of that hash (the details of the drink)
+            # using the input as the index to access that drink's attributes
             drink = Drink.all[input.to_i-1]
             drink_details(drink)
         end
+        #do you want to see another drink?
     end
 
     def menu_milk
