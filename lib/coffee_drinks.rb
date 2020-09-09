@@ -85,7 +85,7 @@ class CoffeeDrinks
         puts "#{drink.description}"
         puts "#{drink.ratio}"
         puts "#{drink.cup}"
-        puts "#{drink.milk}"
+        puts "Milk: #{drink.milk}"
     end
 
 

@@ -6,10 +6,13 @@ class Scraper
         doc = Nokogiri::HTML(open(DRINK_URL))
         doc.css("div.blog-highlight-wrap").each do |drink|
             name = drink.css("h3").text
-            milk = "yes" if drink.css("li.icon-check").text.include?("milk")
-            milk = "no" if !drink.css("li.icon-check").text.include?("milk")
-        end
+            milk = if drink.css("li.icon-check").text.include?("milk") == true
+                "yes"
+            else
+                "no"
+            end
             Drink.new(name, milk)
+        end
     end
 
     def self.scrape_drink_details
