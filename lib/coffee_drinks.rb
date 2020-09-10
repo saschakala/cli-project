@@ -50,9 +50,9 @@ class CoffeeDrinks
             # using the input as the index to access that drink's attributes
             drink = Drink.sorted_all[input.to_i-1]
             drink_details(drink)
+            puts "\nWould you like to see another drink (y/n) or perhaps view brews by milk content? (milk/no milk)?"
+            menu_details_second
         end
-        puts "\nWould you like to see another drink (y/n) or perhaps view brews by milk content? (milk/no milk)?"
-        menu_details_second
     end
 
     def menu_details_second
@@ -89,18 +89,18 @@ class CoffeeDrinks
 
 
     def list_drinks
-        # sorted_drinks = Drink.all.sort_by {|drink| drink.name}
-        Drink.sorted_all.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        sorted_drinks = Drink.all.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def milk_drinks
-        # sorted_drinks = Drink.milk_drinks.sort_by {|drink| drink.name}
-        Drink.sorted_milk.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        sorted_drinks = Drink.milk.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def no_milk_drinks
-        # sorted_drinks = Drink.no_milk_drinks.sort_by {|drink| drink.name}
-        Drink.sorted_no_milk.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        sorted_drinks = Drink.no_milk.sort_by {|drink| drink.name}
+        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
 
     def drink_details (drink)
