@@ -25,10 +25,11 @@ class CoffeeDrinks
         input = gets.chomp.downcase
         if input == "list"
             list_drinks
-            puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
+            puts "\nWhat's in a name? A drink by any other name would taste as sweet."
             menu_details
         elsif input == "milk"
             milk_drinks
+            puts "\nLiving a life of lactose luxury, I see."
             menu_milk
         elsif input == "no milk"
             no_milk_drinks
@@ -43,6 +44,7 @@ class CoffeeDrinks
     end
 
     def menu_details
+        puts "\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
             puts "I know, I know: our latte art needs work."
@@ -54,7 +56,7 @@ class CoffeeDrinks
         else
             drink = Drink.sorted_all[input.to_i-1]
             drink_details(drink)
-            puts "\nWould you like to see another drink (y/n) or perhaps view brews by milk content? (milk/no milk)?"
+            puts "\nWould you like to see another drink (y / n) or perhaps view brews by milk content? (milk / no milk)?"
             menu_details_second
         end
     end
@@ -82,9 +84,65 @@ class CoffeeDrinks
 
 
     def menu_milk
-        puts "\nLiving a life of lactose luxury, I see.\nSelect a number to learn more about your favorite drink's fuel to foam ratio."
+        puts "\nSelect a number to learn more about your favorite drink's fuel to foam ratio or enter 'exit' to leave."
         input = gets.chomp.downcase
+        if input == "exit"
+            puts "Don't forget to espresso yourself."
+        elsif !input.to_i.between?(1, Drink.milk.count)
+            milk_drinks
+            puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+            select_drink
+            menu_milk
+        else
+            drink = Drink.sorted_milk[input.to_i-1]
+            drink_details(drink)
+            puts "\nWould you like to see another drink (y / n) or perhaps visit the main or milk-free beverage lists (main / no milk)?"
+            menu_milk_second
+        end
     end
+
+    def menu_milk_second
+        round_two = gets.chomp.downcase 
+        if round_two == "n"
+            puts "May your coffee kick in before reality does."
+        elsif round_two == "y"
+            milk_drinks
+            menu_milk
+        elsif round_two == "main"
+            list_drinks
+            menu_details
+        elsif round_two == "no milk"
+            no_milk_drinks
+            menu_no_milk
+        else 
+            try_again_boost
+            puts "\n--> enter 'y', 'main', or 'no milk' to stay, and 'n' to leave <--"
+            menu_milk_second
+        end
+    end
+
+    # def menu_milk_third
+    #     round_three = gets.chomp.downcase 
+    #     if round_three = "y"
+    #         milk_drinks
+
+    #     if round_three = "main"
+    #         list_drinks
+    #         puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
+    #         menu_details
+    #     elsif round_three = "no milk"
+    #         no_milk_drinks
+    #         menu_no_milk
+    #     elsif round_three = "exit"
+    #         puts "Well, bye I guess."
+    #     else 
+    #         try_again_boost
+    #         puts puts "\n--> enter 'main', 'milk', or 'no milk' <--"
+    #         menu_milk_third
+    #     end
+    # end
+
+
 
     def menu_no_milk
         puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone.\n\nSelect a number to learn more about your favorite drink."
