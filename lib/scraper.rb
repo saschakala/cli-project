@@ -5,9 +5,9 @@ class Scraper
     def self.scrape_drinks
         doc = Nokogiri::HTML(open(DRINK_URL))
         doc.css("div.blog-highlight-wrap").each do |drink|
-            name = drink.css("h3").text
+            name = drink.css("h3").text.strip
             ratio_cup = drink.css("li.icon-check")
-            milk = if ratio_cup.text.include?("milk") || ratio_cup.text.include?("foam") == true
+            milk = if ratio_cup.text.include?("milk") || ratio_cup.text.include?("foam")|| ratio_cup.text.include?("foam") == true
                 "yes"
             else
                 "no"

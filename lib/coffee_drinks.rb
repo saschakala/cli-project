@@ -32,7 +32,7 @@ class CoffeeDrinks
         else 
             puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
             puts "\n--> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
-            menu_1
+            menu_main
         end
     end
 
@@ -48,12 +48,34 @@ class CoffeeDrinks
             #put the list_drinks and menu again but only after 5 seconds - look this up
         else
             # using the input as the index to access that drink's attributes
-            drink = Drink.sort_all[input.to_i-1]
+            drink = Drink.sorted_all[input.to_i-1]
             drink_details(drink)
-
         end
-        #do you want to see another drink?
+        puts "\nWould you like to see another drink (y/n) or perhaps view brews by milk content? (milk/no milk)?"
+        menu_details_second
     end
+
+    def menu_details_second
+        round_two = gets.chomp.downcase 
+        if round_two == "n"
+            puts "What do you call a sad cup of coffee? A depresso."
+        elsif round_two == "milk"
+            milk_drinks
+            menu_milk
+        elsif round_two == "no milk"
+            no_milk_drinks
+            menu_no_milk
+        elsif round_two == "y"
+            list_drinks
+            puts "\nSelect a number to get drink details or type 'exit' to leave."
+            menu_details
+        else 
+            puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+            puts "\n--> enter 'y', 'milk', or 'no milk' to stay, and 'n' to leave <--"
+            menu_details_second
+        end
+    end
+
 
     def menu_milk
         puts "\nLiving a life of lactose luxury, I see.\nSelect a number to learn more about your favorite drink's fuel to foam ratio."
@@ -61,24 +83,24 @@ class CoffeeDrinks
     end
 
     def menu_no_milk
-        puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone.\nSelect a number to learn more about your favorite drink."
+        puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone.\n\nSelect a number to learn more about your favorite drink."
         input = gets.chomp.downcase
     end
 
 
     def list_drinks
-        sorted_drinks = Drink.all.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        # sorted_drinks = Drink.all.sort_by {|drink| drink.name}
+        Drink.sorted_all.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def milk_drinks
-        sorted_drinks = Drink.milk_drinks.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        # sorted_drinks = Drink.milk_drinks.sort_by {|drink| drink.name}
+        Drink.sorted_milk.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
     
     def no_milk_drinks
-        sorted_drinks = Drink.no_milk_drinks.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        # sorted_drinks = Drink.no_milk_drinks.sort_by {|drink| drink.name}
+        Drink.sorted_no_milk.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
 
     def drink_details (drink)

@@ -4,6 +4,8 @@ class Drink
     @@milk = []
     @@no_milk = []
     @@all_sorted = []
+    @@milk_sorted = []
+    @@no_milk_sorted = []
 
     attr_accessor :name, :milk, :description, :ratio, :cup
 
@@ -24,21 +26,31 @@ class Drink
         @@all
     end
 
-    def self.sort_all
+    def self.sorted_all
         self.all.sort_by {|drink| drink.name}.each {|instance| @@all_sorted << instance }
         @@all_sorted
     end
+    
 
-
-
-    def self.milk_drinks
+    def self.milk
         @@milk
     end
 
+    def self.sorted_milk
+        self.milk.sort_by {|drink| drink.name}.each {|instance| @@milk_sorted << instance }
+        @@milk_sorted
+    end
 
-    def self.no_milk_drinks
+
+    def self.no_milk
         @@no_milk
     end
+
+    def self.sorted_no_milk
+        self.no_milk.sort_by {|drink| drink.name}.each {|instance| @@no_milk_sorted << instance }
+        @@no_milk_sorted
+    end
+
 
 
 
