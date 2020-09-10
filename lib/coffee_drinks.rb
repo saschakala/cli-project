@@ -3,17 +3,23 @@ class CoffeeDrinks
     def call
         greeting
         Scraper.scrape_drinks
-        # puts Drink.sort_all[0]
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_main
-        # list_drinks
-        # milk_drinks
-        # no_milk_drinks
     end
 
     def greeting
         puts "Hello! And welcome to the Bevvie Bevy: an interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what the difference is between a flat white and long black? If so, the Bevy is here to help."
     end
+
+    def try_again_boost
+        puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+    end
+
+    def select_drink
+        puts "\nSelect a number to get drink details or type 'exit' to leave."
+    end
+
+
 
     def menu_main
         input = gets.chomp.downcase
@@ -30,7 +36,7 @@ class CoffeeDrinks
         elsif input == "exit"
             puts "A cuppa a day keeps the doctor away."
         else 
-            puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+            try_again_boost
             puts "\n--> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
             menu_main
         end
@@ -43,11 +49,9 @@ class CoffeeDrinks
         elsif !input.to_i.between?(1, Drink.all.count)
             list_drinks
             puts "\nLooks like that drink doesn't exist yet! Try again, captain."
-            puts "\nSelect a number to get drink details or type 'exit' to leave."
+            select_drink
             menu_details 
-            #put the list_drinks and menu again but only after 5 seconds - look this up
         else
-            # using the input as the index to access that drink's attributes
             drink = Drink.sorted_all[input.to_i-1]
             drink_details(drink)
             puts "\nWould you like to see another drink (y/n) or perhaps view brews by milk content? (milk/no milk)?"
@@ -67,10 +71,10 @@ class CoffeeDrinks
             menu_no_milk
         elsif round_two == "y"
             list_drinks
-            puts "\nSelect a number to get drink details or type 'exit' to leave."
+            select_drink
             menu_details
         else 
-            puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+            try_again_boost
             puts "\n--> enter 'y', 'milk', or 'no milk' to stay, and 'n' to leave <--"
             menu_details_second
         end
@@ -104,7 +108,6 @@ class CoffeeDrinks
     end
 
     def drink_details (drink)
-        # Scraper.scrape_drink_details(drink)
         puts "\nOrder up! One #{drink.name}:"
         puts "\n#{drink.description}"
         puts "\n#{drink.ratio}"
