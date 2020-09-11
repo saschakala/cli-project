@@ -15,10 +15,6 @@ class CoffeeDrinks
         puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
     end
 
-    def select_drink
-        puts "\nSelect a number to get drink details or type 'exit' to leave."
-    end
-
     def doesnt_exist
         puts "\nLooks like that drink doesn't exist yet! Try again, captain."
     end
@@ -57,7 +53,6 @@ class CoffeeDrinks
         elsif !input.to_i.between?(1, Drink.all.count)
             list_drinks
             doesnt_exist
-            select_drink
             menu_details 
         else
             drink = Drink.sorted_all[input.to_i-1]
@@ -79,7 +74,7 @@ class CoffeeDrinks
             menu_no_milk
         elsif round_two == "y"
             list_drinks
-            select_drink
+            puts "\nSelect a number to get drink details or type 'exit' to leave."
             menu_details
         else 
             try_again_boost
@@ -97,7 +92,6 @@ class CoffeeDrinks
         elsif !input.to_i.between?(1, Drink.milk.count)
             milk_drinks
             doesnt_exist
-            select_drink
             menu_milk
         else
             drink = Drink.sorted_milk[input.to_i-1]
@@ -129,15 +123,14 @@ class CoffeeDrinks
 
 
     def menu_no_milk
-        puts "\n\nSelect a number to learn more about your favorite milk-free drink or enter 'exit' to leave."
+        puts "\n\nSelect a number to learn more about your favorite milk-free drink or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
             puts "Stay grounded."
         elsif !input.to_i.between?(1, Drink.no_milk.count)
             no_milk_drinks
             doesnt_exist
-            select_drink
-            menu_milk
+            menu_no_milk
         else
             drink = Drink.sorted_no_milk[input.to_i-1]
             drink_details(drink)
