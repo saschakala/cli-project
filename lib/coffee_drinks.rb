@@ -167,8 +167,12 @@ class CoffeeDrinks
     def tea_menu
         input = gets.chomp.downcase
         if input == "y"
-            Scraper.scrape_tea
-            list_teas
+            if Tea.all.count > 0
+                list_teas
+            else
+                Scraper.scrape_tea
+                list_teas
+            end
             tea_menu_details
         elsif input == "n"
             puts "May your coffee kick in before reality does."
@@ -181,9 +185,13 @@ class CoffeeDrinks
 
 
     def tea_menu_details
-        Scraper.scrape_tea
-        list_teas
-        puts "\nTo learn more about a type of tea enter its corresponding number below. (Or if you really want to leave we promise this time we'll let you...just enter 'exit' below.)"
+        if Tea.all.count > 0
+            list_teas
+        else
+            Scraper.scrape_tea
+            list_teas
+        end
+        puts "\nTo learn more about a type of tea enter its corresponding number below.\n\n(Or if you really want to leave we promise this time we'll let you...just enter 'exit' below.)"
         input = gets.chomp.downcase
         if input == "exit"
             puts "No need to be sal-tea."
@@ -217,8 +225,12 @@ class CoffeeDrinks
 
 
     def pastry_menu_details
-        Scraper.scrape_pastries
-        list_pastries
+        if Pastry.all.count > 0
+            list_pastries
+        else
+            Scraper.scrape_pastries
+            list_pastries
+        end
         puts "\nTo learn more about a pastry enter its corresponding number below."
         input = gets.chomp.downcase
         if input == "exit"
