@@ -1,6 +1,9 @@
 class Scraper
 
     DRINK_URL = "https://www.webstaurantstore.com/article/397/types-of-coffee-drinks.html"
+    # PASTRY_URL = "https://en.wikipedia.org/wiki/List_of_pastries"
+    # PASTRY_URL = "https://www.insider.com/best-german-desserts-2017-3#berliner-or-krapfen-4"
+    PASTRY_URL = "https://www.insider.com/best-german-desserts-2017-3"
 
     def self.scrape_drinks
         doc = Nokogiri::HTML(open(DRINK_URL))
@@ -20,6 +23,30 @@ class Scraper
             Drink.new(name, milk, description, ratio, cup)
         end
     end
+
+    def self.scrape_pastries
+        doc = Nokogiri::HTML(open(PASTRY_URL))
+        doc.css("div.slide").each do |pastry|
+            name = pastry.css("h2.slide-title-text").text.strip
+            description = pastry.css("p").text.strip
+            Pastry.new(name)
+        end
+    end
+
+
+
+        # doc.css("div.site-container").each do |pastry|
+        #     i = 0
+        #     name = pastry.css("h3")[i+=1].text
+        #     binding.pry
+           
+
+    
+
+    # text = doc.css("div.mw-content-ltr")
+    # # split on \n\n\n
+    # # table = doc.css("table.wikitable sortable jquery-tablesorter")
+
 
     # def self.scrape_drink_details (drink)
     #     doc = Nokogiri::HTML(open(DRINK_URL))

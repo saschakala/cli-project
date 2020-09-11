@@ -183,7 +183,10 @@ class CoffeeDrinks
         puts "Milk: #{drink.milk}"
     end
 
-
+    def list_pastries
+        sorted_pastries = Pastry.all.sort_by {|pastry| pastry.name}
+        sorted_pastries.each.with_index(1) { |pastry, i| puts "#{i}. #{pastry.name}"}
+    end
 
 
 
