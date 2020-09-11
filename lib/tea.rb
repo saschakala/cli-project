@@ -10,8 +10,6 @@ class Tea
         @description = description
         @flavor = flavor
         @varieties = varieties
-        # @caffeine = caffeine
-        # @benefits = benefits
         @@all << self
     end
 
@@ -25,6 +23,3 @@ class Tea
     end
 
 end
-
-# 
-# 

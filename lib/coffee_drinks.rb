@@ -1,9 +1,4 @@
 
-# puts "A cuppa a day keeps the doctor away."
-# 
-# puts "Don't forget to espresso yourself."
-# 
-
 class CoffeeDrinks
 
     def call
@@ -170,6 +165,16 @@ class CoffeeDrinks
             tea_menu_details
         elsif input == "n"
             puts "May your coffee kick in before reality does."
+            puts <<-DOC
+                 ((((
+                ((((
+                 ))))
+              _ .---.
+             ( |`---'|
+               \|     |
+              : .___, :
+               `-----'
+            DOC
         else 
             try_again_boost
             puts "\n--> enter 'y' to stay (and learn about tea) or 'n' to leave <--"
@@ -189,6 +194,16 @@ class CoffeeDrinks
         input = gets.chomp.downcase
         if input == "exit"
             puts "No need to be sal-tea."
+            puts <<-DOC
+                 ((((
+                ((((
+                 ))))
+              _ .---.
+             ( |`---'|
+               \|     |
+              : .___, :
+               `-----'
+            DOC
         elsif !input.to_i.between?(1, Tea.all.count)
             list_teas
             doesnt_exist
@@ -212,6 +227,16 @@ class CoffeeDrinks
         input = gets.chomp.downcase
         if input == "exit"
             puts "No need to be sal-tea."
+            puts <<-DOC
+                 ((((
+                ((((
+                 ))))
+              _ .---.
+             ( |`---'|
+               \|     |
+              : .___, :
+               `-----'
+            DOC
         elsif !input.to_i.between?(1, Tea.all.count)
             list_teas
             doesnt_exist
@@ -228,6 +253,16 @@ class CoffeeDrinks
         round_two = gets.chomp.downcase 
         if round_two == "n"
             puts "What do you call a sad cup of coffee? A depresso."
+            puts <<-DOC
+                 ((((
+                ((((
+                 ))))
+              _ .---.
+             ( |`---'|
+               \|     |
+              : .___, :
+               `-----'
+            DOC
         elsif round_two == "y"
             tea_menu_details_clone
         elsif round_two == "pastry"
@@ -268,6 +303,16 @@ class CoffeeDrinks
         round_two = gets.chomp.downcase 
         if round_two == "n"
             puts "Sometimes we go hours without drinking coffee. It’s called sleeping."
+            puts <<-DOC
+                 ((((
+                ((((
+                 ))))
+              _ .---.
+             ( |`---'|
+               \|     |
+              : .___, :
+               `-----'
+            DOC
         elsif round_two == "y"
             pastry_menu_details
         elsif round_two == "tea"
@@ -342,49 +387,6 @@ class CoffeeDrinks
         puts "\nPsych! How about a cup of tea before you go (y / n)?"
     end
 
-
-
-
 end
 
 
-
-
-
-# def menu_milk_third
-    #     round_three = gets.chomp.downcase 
-    #     if round_three = "y"
-    #         milk_drinks
-
-    #     if round_three = "main"
-    #         list_drinks
-    #         puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
-    #         menu_details
-    #     elsif round_three = "no milk"
-    #         no_milk_drinks
-    #         menu_no_milk
-    #     elsif round_three = "exit"
-    #         puts "Well, bye I guess."
-    #     else 
-    #         try_again_boost
-    #         puts puts "\n--> enter 'main', 'milk', or 'no milk' <--"
-    #         menu_milk_third
-    #     end
-    # end
-
- # def greeting
-    #     puts <<-DOC
-    #     Hello!
-    #     Welcome to the Bevvie Bevy:
-    #     an interactive experience for coffee connoisseurs and novices alike.
-        
-    #     Have you ever wondered what, exactly, the difference is between a flat white and long black? If so, the Bevy is here to help.
-        
-    #     Type 'list' to see a list of espresso beverages.
-        
-    #     ** alternatively, for the lactose challenged among us, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **
-        
-    #     --> enter 'list', 'milk', or 'no milk' to proceed and 'exit' to leave (womp womp) <--
-    #     DOC
-
-    # end

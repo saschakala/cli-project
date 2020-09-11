@@ -1,10 +1,7 @@
 class Scraper
 
     DRINK_URL = "https://www.webstaurantstore.com/article/397/types-of-coffee-drinks.html"
-    # PASTRY_URL = "https://en.wikipedia.org/wiki/List_of_pastries"
-    # PASTRY_URL = "https://www.insider.com/best-german-desserts-2017-3#berliner-or-krapfen-4"
     PASTRY_URL = "https://www.insider.com/best-german-desserts-2017-3"
-    # TEA_URL = "https://www.teasource.com/pages/types-of-tea"
     TEA_URL = "https://www.webstaurantstore.com/guide/693/types-of-tea.html"
 
     def self.scrape_drinks
@@ -18,10 +15,8 @@ class Scraper
                 "no"
             end
             description = drink.css("p").text
-            ratio_cup_values = []
-            ratio_cup.each {|value| ratio_cup_values << value.text }
-            ratio = ratio_cup_values[0]
-            cup = ratio_cup_values[1]
+            ratio = drink.css("li.icon-check")[0].text.strip
+            cup = drink.css("li.icon-check")[1].text.strip
             Drink.new(name, milk, description, ratio, cup)
         end
     end
@@ -47,38 +42,4 @@ class Scraper
         
     end
 
-
-
-
-    # doc.css("div.types-of-tea-list").each do |tea|
-    #     name = tea.css("h3 b").text.strip
-    #     description = tea.css("p span").text.strip
-    #     binding.pry
-    #     Tea.new(name, description)
-    # end
-
-        # doc.css("div.site-container").each do |pastry|
-        #     i = 0
-        #     name = pastry.css("h3")[i+=1].text
-        #     binding.pry
-           
-
-    
-
-    # text = doc.css("div.mw-content-ltr")
-    # # split on \n\n\n
-    # # table = doc.css("table.wikitable sortable jquery-tablesorter")
-
-
-    # def self.scrape_drink_details (drink)
-    #     doc = Nokogiri::HTML(open(DRINK_URL))
-    #     doc.css("div.blog-highlight-wrap").each do |drink|
-            
-
-    # end
-    
-
-
 end
-
-# url: https://www.webstaurantstore.com/article/397/types-of-coffee-drinks.html
