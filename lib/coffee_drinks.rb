@@ -1,3 +1,9 @@
+
+# puts "A cuppa a day keeps the doctor away."
+# 
+# puts "Don't forget to espresso yourself."
+# 
+
 class CoffeeDrinks
 
     def call
@@ -23,7 +29,8 @@ class CoffeeDrinks
             puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone."
             menu_no_milk
         elsif input == "exit"
-            puts "A cuppa a day keeps the doctor away."
+            puts "\nI know, I know: our latte art needs work. But wait, what about a nice strong cup of tea?"
+            tea_menu_details
         else 
             try_again_boost
             puts "\n--> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
@@ -35,8 +42,8 @@ class CoffeeDrinks
         puts "\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
-            puts "Could we interest you in a pastry before you leave?"
-            # puts "I know, I know: our latte art needs work."
+            puts "\nAre you, perhaps, more of a tea person?"
+            tea_menu_details
         elsif !input.to_i.between?(1, Drink.all.count)
             list_drinks
             doesnt_exist
@@ -44,7 +51,7 @@ class CoffeeDrinks
         else
             drink = Drink.sorted_all[input.to_i-1]
             drink_details(drink)
-            puts "\nWould you like to see another drink (y / n) or perhaps view brews by milk content? (milk / no milk)?"
+            puts "\nWould you like to see another drink (y / n), view brews by milk content (milk / no milk), or could we perhaps interest you in a German pastry to go with your coffee (pastry)?"
             menu_details_second
         end
     end
@@ -52,20 +59,23 @@ class CoffeeDrinks
     def menu_details_second
         round_two = gets.chomp.downcase 
         if round_two == "n"
-            puts "What do you call a sad cup of coffee? A depresso."
+            puts "\nWhat about a nice cup of tea (y / n)?"
+            tea_menu
         elsif round_two == "milk"
             milk_drinks
             menu_milk
         elsif round_two == "no milk"
             no_milk_drinks
             menu_no_milk
+        elsif round_two == "pastry"
+            pastry_menu_details
         elsif round_two == "y"
             list_drinks
             puts "\nSelect a number to get drink details or type 'exit' to leave."
             menu_details
         else 
             try_again_boost
-            puts "\n--> enter 'y', 'milk', or 'no milk' to stay, and 'n' to leave <--"
+            puts "\n--> enter 'y', 'milk', 'no milk', or 'pastry' to stay, and 'n' to leave <--"
             menu_details_second
         end
     end
@@ -75,7 +85,8 @@ class CoffeeDrinks
         puts "\nSelect a number to learn more about your favorite drink's fuel to foam ratio or enter 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
-            puts "Don't forget to espresso yourself."
+            puts "\nMaybe some tea would help?"
+            tea_menu_details
         elsif !input.to_i.between?(1, Drink.milk.count)
             milk_drinks
             doesnt_exist
@@ -83,7 +94,7 @@ class CoffeeDrinks
         else
             drink = Drink.sorted_milk[input.to_i-1]
             drink_details(drink)
-            puts "\nWould you like to see another drink (y / n) or perhaps visit the main or milk-free beverage lists (main / no milk)?"
+            puts "\nWould you like to see another drink (y / n), visit the main or milk-free beverage lists (main / no milk), or could we perhaps tempt you with a German pastry (pastry)?"
             menu_milk_second
         end
     end
@@ -91,7 +102,8 @@ class CoffeeDrinks
     def menu_milk_second
         round_two = gets.chomp.downcase 
         if round_two == "n"
-            puts "May your coffee kick in before reality does."
+            puts "Psych! How about a cup of tea before you go (y / n)?"
+            tea_menu
         elsif round_two == "y"
             milk_drinks
             menu_milk
@@ -101,9 +113,11 @@ class CoffeeDrinks
         elsif round_two == "no milk"
             no_milk_drinks
             menu_no_milk
+        elsif round_two == "pastry"
+            pastry_menu_details
         else 
             try_again_boost
-            puts "\n--> enter 'y', 'main', or 'no milk' to stay, and 'n' to leave <--"
+            puts "\n--> enter 'y', 'main', 'no milk', or 'pastry' to stay, and 'n' to leave <--"
             menu_milk_second
         end
     end
@@ -113,7 +127,8 @@ class CoffeeDrinks
         puts "\n\nSelect a number to learn more about your favorite milk-free drink or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
-            puts "Stay grounded."
+            puts "These warm drinks definitely don't have milk - maybe you're more interested in tea?"
+            tea_menu_details
         elsif !input.to_i.between?(1, Drink.no_milk.count)
             no_milk_drinks
             doesnt_exist
@@ -121,7 +136,7 @@ class CoffeeDrinks
         else
             drink = Drink.sorted_no_milk[input.to_i-1]
             drink_details(drink)
-            puts "\nWould you like to see another drink (y / n) or perhaps visit the main or milk-containing beverage lists (main / milk)?"
+            puts "\nWould you like to see another drink (y / n), visit the main or milk-containing beverage lists (main / milk), or could we get you a German pastry (pastry) to go with that coffee *lactaid not included* ?"
             menu_no_milk_second
         end
     end
@@ -129,7 +144,8 @@ class CoffeeDrinks
     def menu_no_milk_second
         round_two = gets.chomp.downcase 
         if round_two == "n"
-            puts "Sometimes we go hours without drinking coffee. It’s called sleeping."
+            puts "Psych! How about a cup of tea before you go (y / n)?"
+            tea_menu
         elsif round_two == "y"
             no_milk_drinks
             menu_no_milk
@@ -139,22 +155,113 @@ class CoffeeDrinks
         elsif round_two == "milk"
             milk_drinks
             menu_milk
+        elsif round_two == "pastry"
+            pastry_menu_details
         else 
             try_again_boost
-            puts "\n--> enter 'y', 'main', or 'milk' to stay, and 'n' to leave <--"
+            puts "\n--> enter 'y', 'main', 'milk', or 'pastry' to stay, and 'n' to leave <--"
             menu_no_milk_second
         end
     end
+
+    def tea_menu
+        input = gets.chomp.downcase
+        if input == "y"
+            Scraper.scrape_tea
+            list_teas
+            tea_menu_details
+        elsif input == "n"
+            puts "May your coffee kick in before reality does."
+        else 
+            try_again_boost
+            puts "\n--> enter 'y' to stay (and learn about tea) or 'n' to leave <--"
+            tea_menu
+        end
+    end
+
+
+    def tea_menu_details
+        Scraper.scrape_tea
+        list_teas
+        puts "\nTo learn more about a type of tea enter its corresponding number below. (Or if you really want to leave we promise this time we'll let you...just enter 'exit' below.)"
+        input = gets.chomp.downcase
+        if input == "exit"
+            puts "No need to be sal-tea."
+        elsif !input.to_i.between?(1, Tea.all.count)
+            list_teas
+            doesnt_exist
+            tea_menu_details 
+        else
+            tea = Tea.sorted_all[input.to_i-1]
+            tea_details(tea)
+            puts "\nWould you like to see another tea (y / n) or could we perhaps interest you in a German pastry (pastry)?"
+            tea_menu_details_second
+        end
+    end
+
+    def tea_menu_details_second
+        round_two = gets.chomp.downcase 
+        if round_two == "n"
+            puts "What do you call a sad cup of coffee? A depresso."
+        elsif round_two == "y"
+            list_teas
+            tea_menu_details
+        elsif round_two == "pastry"
+            pastry_menu_details
+        else 
+            try_again_boost
+            puts "\n--> enter 'y', 'n', or 'pastry' <--"
+            tea_menu_details_second
+        end
+    end
+
+
+    def pastry_menu_details
+        Scraper.scrape_pastries
+        list_pastries
+        puts "\nTo learn more about a pastry enter its corresponding number below."
+        input = gets.chomp.downcase
+        if input == "exit"
+            puts "Not so fast, how about some tea?"
+            tea_menu_details
+        elsif !input.to_i.between?(1, Pastry.all.count)
+            list_pastries
+            try_again_boost
+            pastry_menu_details
+        else
+            pastry = Pastry.sorted_all[input.to_i-1]
+            pastry_details(pastry)
+            puts "\nWould you like to see another pastry (y / n) or maybe you're ready for some tea (tea) or more coffee (coffee)?"
+            pastry_menu_details_second
+        end
+    end
+
+    def pastry_menu_details_second
+        round_two = gets.chomp.downcase 
+        if round_two == "n"
+            puts "Sometimes we go hours without drinking coffee. It’s called sleeping."
+        elsif round_two == "y"
+            list_pastries
+            pastry_menu_details
+        elsif round_two == "tea"
+            tea_menu_details
+        elsif round_two == "coffee"
+            list_drinks
+            menu_details
+        else 
+            try_again_boost
+            puts "\n--> enter 'y', 'n', 'tea', or 'coffee' <--"
+            pastry_menu_details_second
+        end
+    end
+
+
+
 
 
     def list_drinks
         Drink.all.sort_by {|drink| drink.name}.tap{|drink| drink.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}}
     end
-    
-    # def list_drinks
-    #     sorted_drinks = Drink.all.sort_by {|drink| drink.name}
-    #     sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
-    # end
     
     def milk_drinks
         Drink.milk.sort_by {|drink| drink.name}.tap{|drink| drink.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}}
@@ -181,13 +288,26 @@ class CoffeeDrinks
         puts "Milk: #{drink.milk}"
     end
 
+    def tea_details (tea)
+        puts "\nOrder up! One #{tea.name}:"
+        puts "\n#{tea.description}"
+        puts "\n#{tea.flavor}"
+        puts "\n#{tea.varieties}"
+    end
+
+    def pastry_details (pastry)
+        puts "\nOrder up! One #{pastry.name}:"
+        puts "\n#{pastry.description}"
+    end
+
+
 
     def greeting
         puts "Hello! And welcome to the Bevvie Bevy: an interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what the difference is between a flat white and long black? If so, the Bevy is here to help."
     end
 
     def try_again_boost
-        puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+        puts "\nLooks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
     end
 
     def doesnt_exist
