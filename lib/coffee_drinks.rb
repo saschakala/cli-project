@@ -1,7 +1,6 @@
 class CoffeeDrinks
 
     def call
-        Scraper.scrape_tea
         greeting
         Scraper.scrape_drinks
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
@@ -149,24 +148,30 @@ class CoffeeDrinks
 
 
     def list_drinks
-        sorted_drinks = Drink.all.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        Drink.all.sort_by {|drink| drink.name}.tap{|drink| drink.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}}
     end
     
+    # def list_drinks
+    #     sorted_drinks = Drink.all.sort_by {|drink| drink.name}
+    #     sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+    # end
+    
     def milk_drinks
-        sorted_drinks = Drink.milk.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        Drink.milk.sort_by {|drink| drink.name}.tap{|drink| drink.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}}
     end
     
     def no_milk_drinks
-        sorted_drinks = Drink.no_milk.sort_by {|drink| drink.name}
-        sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
+        Drink.no_milk.sort_by {|drink| drink.name}.tap{|drink| drink.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}}
     end
 
     def list_pastries
-        sorted_pastries = Pastry.all.sort_by {|pastry| pastry.name}
-        sorted_pastries.each.with_index(1) { |pastry, i| puts "#{i}. #{pastry.name}"}
+        Pastry.all.sort_by {|pastry| pastry.name}.tap{|pastry| pastry.each.with_index(1) { |pastry, i| puts "#{i}. #{pastry.name}"}}
     end
+
+    def list_teas
+        Tea.all.sort_by {|tea| tea.name}.tap{|tea| tea.each.with_index(1) { |tea, i| puts "#{i}. #{tea.name}"}}
+    end
+
 
     def drink_details (drink)
         puts "\nOrder up! One #{drink.name}:"

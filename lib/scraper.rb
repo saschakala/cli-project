@@ -42,7 +42,6 @@ class Scraper
             description = tea.css("p")[2].text.strip
             flavor = tea.css("p")[3].text.strip
             varieties = tea.css("p")[4].text.strip
-            binding.pry
             Tea.new(name, description, flavor, varieties)
         end
         
