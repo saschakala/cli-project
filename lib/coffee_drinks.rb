@@ -29,7 +29,7 @@ class CoffeeDrinks
             puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone."
             menu_no_milk
         elsif input == "exit"
-            puts "\nI know, I know: our latte art needs work. But wait, what about a nice strong cup of tea?"
+            puts "\nI know, I know: our latte art needs work. But wait, how about a nice strong cup of tea?"
             tea_menu_details
         else 
             try_again_boost
@@ -102,7 +102,7 @@ class CoffeeDrinks
     def menu_milk_second
         round_two = gets.chomp.downcase 
         if round_two == "n"
-            puts "Psych! How about a cup of tea before you go (y / n)?"
+            psych
             tea_menu
         elsif round_two == "y"
             milk_drinks
@@ -124,7 +124,7 @@ class CoffeeDrinks
 
 
     def menu_no_milk
-        puts "\n\nSelect a number to learn more about your favorite milk-free drink or type 'exit' to leave."
+        puts "\nSelect a number to learn more about your favorite milk-free drink or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
             puts "These warm drinks definitely don't have milk - maybe you're more interested in tea?"
@@ -144,7 +144,7 @@ class CoffeeDrinks
     def menu_no_milk_second
         round_two = gets.chomp.downcase 
         if round_two == "n"
-            puts "Psych! How about a cup of tea before you go (y / n)?"
+            psych
             tea_menu
         elsif round_two == "y"
             no_milk_drinks
@@ -167,12 +167,6 @@ class CoffeeDrinks
     def tea_menu
         input = gets.chomp.downcase
         if input == "y"
-            if Tea.all.count > 0
-                list_teas
-            else
-                Scraper.scrape_tea
-                list_teas
-            end
             tea_menu_details
         elsif input == "n"
             puts "May your coffee kick in before reality does."
@@ -191,7 +185,7 @@ class CoffeeDrinks
             Scraper.scrape_tea
             list_teas
         end
-        puts "\nTo learn more about a type of tea enter its corresponding number below.\n\n(Or if you really want to leave we promise this time we'll let you...just enter 'exit' below.)"
+        puts "\nTo learn more about a type of tea enter its corresponding number below.\n\n(Or if you really want to leave we promise this time we'll let you...just enter 'exit' here.)"
         input = gets.chomp.downcase
         if input == "exit"
             puts "No need to be sal-tea."
@@ -322,6 +316,10 @@ class CoffeeDrinks
 
     def doesnt_exist
         puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+    end
+
+    def psych
+        puts "\nPsych! How about a cup of tea before you go (y / n)?"
     end
 
 
