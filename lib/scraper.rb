@@ -31,7 +31,7 @@ class Scraper
         doc.css("div.slide").each do |pastry|
             name = pastry.css("h2.slide-title-text").text.strip
             description = pastry.css("p").text.strip
-            Pastry.new(name)
+            Pastry.new(name, description)
         end
     end
 

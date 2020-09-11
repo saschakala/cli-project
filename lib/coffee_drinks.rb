@@ -212,7 +212,6 @@ class CoffeeDrinks
         if round_two == "n"
             puts "What do you call a sad cup of coffee? A depresso."
         elsif round_two == "y"
-            list_teas
             tea_menu_details
         elsif round_two == "pastry"
             pastry_menu_details
@@ -253,7 +252,6 @@ class CoffeeDrinks
         if round_two == "n"
             puts "Sometimes we go hours without drinking coffee. It’s called sleeping."
         elsif round_two == "y"
-            list_pastries
             pastry_menu_details
         elsif round_two == "tea"
             tea_menu_details
