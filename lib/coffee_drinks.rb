@@ -1,25 +1,12 @@
 class CoffeeDrinks
 
     def call
+        Scraper.scrape_tea
         greeting
         Scraper.scrape_drinks
         puts "\nType 'list' to see a list of espresso beverages.\n\n** alternatively, for the lactose challenged, type 'milk' or 'no milk' to see drinks that both will and won't give you indigestion **\n\n --> enter 'list', 'milk', or 'no milk' to caffeinate and 'exit' to leave <--"
         menu_main
     end
-
-    def greeting
-        puts "Hello! And welcome to the Bevvie Bevy: an interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what the difference is between a flat white and long black? If so, the Bevy is here to help."
-    end
-
-    def try_again_boost
-        puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
-    end
-
-    def doesnt_exist
-        puts "\nLooks like that drink doesn't exist yet! Try again, captain."
-    end
-
-
 
 
     def menu_main
@@ -49,7 +36,8 @@ class CoffeeDrinks
         puts "\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
         input = gets.chomp.downcase
         if input == "exit"
-            puts "I know, I know: our latte art needs work."
+            puts "Could we interest you in a pastry before you leave?"
+            # puts "I know, I know: our latte art needs work."
         elsif !input.to_i.between?(1, Drink.all.count)
             list_drinks
             doesnt_exist
@@ -175,6 +163,11 @@ class CoffeeDrinks
         sorted_drinks.each.with_index(1) { |drink, i| puts "#{i}. #{drink.name}"}
     end
 
+    def list_pastries
+        sorted_pastries = Pastry.all.sort_by {|pastry| pastry.name}
+        sorted_pastries.each.with_index(1) { |pastry, i| puts "#{i}. #{pastry.name}"}
+    end
+
     def drink_details (drink)
         puts "\nOrder up! One #{drink.name}:"
         puts "\n#{drink.description}"
@@ -183,9 +176,17 @@ class CoffeeDrinks
         puts "Milk: #{drink.milk}"
     end
 
-    def list_pastries
-        sorted_pastries = Pastry.all.sort_by {|pastry| pastry.name}
-        sorted_pastries.each.with_index(1) { |pastry, i| puts "#{i}. #{pastry.name}"}
+
+    def greeting
+        puts "Hello! And welcome to the Bevvie Bevy: an interactive experience for coffee connoisseurs and novices alike.\n\nHave you ever wondered what the difference is between a flat white and long black? If so, the Bevy is here to help."
+    end
+
+    def try_again_boost
+        puts "Looks like you need a boost of caffeine! Give it another go, we didn't quite catch that."
+    end
+
+    def doesnt_exist
+        puts "\nLooks like that drink doesn't exist yet! Try again, captain."
     end
 
 
