@@ -19,6 +19,11 @@ class CoffeeDrinks
         puts "\nSelect a number to get drink details or type 'exit' to leave."
     end
 
+    def doesnt_exist
+        puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+    end
+
+
 
 
     def menu_main
@@ -33,6 +38,7 @@ class CoffeeDrinks
             menu_milk
         elsif input == "no milk"
             no_milk_drinks
+            puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone."
             menu_no_milk
         elsif input == "exit"
             puts "A cuppa a day keeps the doctor away."
@@ -50,7 +56,7 @@ class CoffeeDrinks
             puts "I know, I know: our latte art needs work."
         elsif !input.to_i.between?(1, Drink.all.count)
             list_drinks
-            puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+            doesnt_exist
             select_drink
             menu_details 
         else
@@ -90,7 +96,7 @@ class CoffeeDrinks
             puts "Don't forget to espresso yourself."
         elsif !input.to_i.between?(1, Drink.milk.count)
             milk_drinks
-            puts "\nLooks like that drink doesn't exist yet! Try again, captain."
+            doesnt_exist
             select_drink
             menu_milk
         else
@@ -121,32 +127,43 @@ class CoffeeDrinks
         end
     end
 
-    # def menu_milk_third
-    #     round_three = gets.chomp.downcase 
-    #     if round_three = "y"
-    #         milk_drinks
-
-    #     if round_three = "main"
-    #         list_drinks
-    #         puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
-    #         menu_details
-    #     elsif round_three = "no milk"
-    #         no_milk_drinks
-    #         menu_no_milk
-    #     elsif round_three = "exit"
-    #         puts "Well, bye I guess."
-    #     else 
-    #         try_again_boost
-    #         puts puts "\n--> enter 'main', 'milk', or 'no milk' <--"
-    #         menu_milk_third
-    #     end
-    # end
-
-
 
     def menu_no_milk
-        puts "\nFunfact: approximately 65% of the human population has a reduced ability to digest lactose after infancy. You are not alone.\n\nSelect a number to learn more about your favorite drink."
+        puts "\n\nSelect a number to learn more about your favorite milk-free drink or enter 'exit' to leave."
         input = gets.chomp.downcase
+        if input == "exit"
+            puts "Stay grounded."
+        elsif !input.to_i.between?(1, Drink.no_milk.count)
+            no_milk_drinks
+            doesnt_exist
+            select_drink
+            menu_milk
+        else
+            drink = Drink.sorted_no_milk[input.to_i-1]
+            drink_details(drink)
+            puts "\nWould you like to see another drink (y / n) or perhaps visit the main or milk-containing beverage lists (main / milk)?"
+            menu_no_milk_second
+        end
+    end
+
+    def menu_no_milk_second
+        round_two = gets.chomp.downcase 
+        if round_two == "n"
+            puts "Sometimes we go hours without drinking coffee. It’s called sleeping."
+        elsif round_two == "y"
+            no_milk_drinks
+            menu_no_milk
+        elsif round_two == "main"
+            list_drinks
+            menu_details
+        elsif round_two == "milk"
+            milk_drinks
+            menu_milk
+        else 
+            try_again_boost
+            puts "\n--> enter 'y', 'main', or 'milk' to stay, and 'n' to leave <--"
+            menu_no_milk_second
+        end
     end
 
 
@@ -180,6 +197,30 @@ class CoffeeDrinks
 
 end
 
+
+
+
+
+# def menu_milk_third
+    #     round_three = gets.chomp.downcase 
+    #     if round_three = "y"
+    #         milk_drinks
+
+    #     if round_three = "main"
+    #         list_drinks
+    #         puts "\nWhat's in a name? A drink by any other name would taste as sweet.\n\nTo learn more about a specific beverage enter its corresponding number below or type 'exit' to leave."
+    #         menu_details
+    #     elsif round_three = "no milk"
+    #         no_milk_drinks
+    #         menu_no_milk
+    #     elsif round_three = "exit"
+    #         puts "Well, bye I guess."
+    #     else 
+    #         try_again_boost
+    #         puts puts "\n--> enter 'main', 'milk', or 'no milk' <--"
+    #         menu_milk_third
+    #     end
+    # end
 
  # def greeting
     #     puts <<-DOC
