@@ -192,7 +192,30 @@ class CoffeeDrinks
         elsif !input.to_i.between?(1, Tea.all.count)
             list_teas
             doesnt_exist
-            tea_menu_details 
+            tea_menu_details_clone
+        else
+            tea = Tea.sorted_all[input.to_i-1]
+            tea_details(tea)
+            puts "\nWould you like to see another tea (y / n) or could we perhaps interest you in a German pastry (pastry)?"
+            tea_menu_details_second
+        end
+    end
+
+    def tea_menu_details_clone
+        if Tea.all.count > 0
+            list_teas
+        else
+            Scraper.scrape_tea
+            list_teas
+        end
+        puts "\nTo learn more about a type of tea enter its corresponding number below."
+        input = gets.chomp.downcase
+        if input == "exit"
+            puts "No need to be sal-tea."
+        elsif !input.to_i.between?(1, Tea.all.count)
+            list_teas
+            doesnt_exist
+            tea_menu_details_clone
         else
             tea = Tea.sorted_all[input.to_i-1]
             tea_details(tea)
@@ -206,7 +229,7 @@ class CoffeeDrinks
         if round_two == "n"
             puts "What do you call a sad cup of coffee? A depresso."
         elsif round_two == "y"
-            tea_menu_details
+            tea_menu_details_clone
         elsif round_two == "pastry"
             pastry_menu_details
         else 
@@ -248,7 +271,7 @@ class CoffeeDrinks
         elsif round_two == "y"
             pastry_menu_details
         elsif round_two == "tea"
-            tea_menu_details
+            tea_menu_details_clone
         elsif round_two == "coffee"
             list_drinks
             menu_details
@@ -258,9 +281,6 @@ class CoffeeDrinks
             pastry_menu_details_second
         end
     end
-
-
-
 
 
     def list_drinks
